@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Annotated
 
 import aiofiles
-from fastapi import APIRouter, Depends, UploadFile
+from fastapi import APIRouter, Depends, UploadFile, Form
 
 from app import background
 from app.database import edgedb_client
@@ -20,11 +20,13 @@ router = APIRouter()
 async def create_upload_file(
     uploaded_file: UploadFile,
     user: Annotated[GetUserByTokenResult, Depends(verify_token)],
+    obj_key: Annotated[str, Form()],
 ) -> FileCreated:
     database_file = await add_file(
         edgedb_client,
         user_id=user.id,
         origin_filename=uploaded_file.filename,
+        obj_key=obj_key
     )
     file_location = f"files/{database_file.id}.xls"
     object_name = str(database_file.id)
