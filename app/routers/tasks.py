@@ -1,12 +1,11 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 
 from app.database import edgedb_client
-from app.dependencies import verify_token
 from app.queries.get_tasks_async_edgeql import GetTasksResult, get_tasks
 
-router = APIRouter(dependencies=[Depends(verify_token)])
+router = APIRouter()
 
 
 @router.get("/subjects/{subject_id}/tasks/")

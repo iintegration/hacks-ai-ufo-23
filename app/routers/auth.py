@@ -1,15 +1,19 @@
 import secrets
+from typing import Annotated
 from uuid import UUID
 
 import bcrypt
 from edgedb import ConstraintViolationError
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.database import edgedb_client
+from app.dependencies import verify_token
 from app.models.auth import Auth, Token
 from app.queries.add_token_async_edgeql import add_token
 from app.queries.add_user_async_edgeql import add_user
+from app.queries.delete_token_async_edgeql import delete_token
 from app.queries.get_user_by_auth_data_async_edgeql import get_user_by_auth_data
+from app.queries.get_user_by_token_async_edgeql import GetUserByTokenResult
 from app.settings import SETTINGS
 
 router = APIRouter()
@@ -44,8 +48,14 @@ async def register(auth_data: Auth) -> Token:
     hashed = bcrypt.hashpw(password, SETTINGS.salt.encode()).decode()
     try:
         user = await add_user(edgedb_client, login=auth_data.login, password_hash=hashed)
-    except ConstraintViolationError:
-        raise HTTPException(status_code=400, detail="username already taken")
+    except ConstraintViolationError as error:
+        raise HTTPException(status_code=400, detail="username already taken") from error
 
     token = await generate_token(user_id=user.id)
     return Token(token=token)
+
+
+@router.post("/logout/")
+async def logout(current_user: Annotated[GetUserByTokenResult, Depends(verify_token)]) -> bool:
+    await delete_token(edgedb_client, token=current_user.token)
+    return True

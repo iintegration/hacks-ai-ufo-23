@@ -2,7 +2,7 @@
 name = "hackathon"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Nikita nikita@sosus.org"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -21,12 +21,20 @@ redis = "^4.5.5"
 mypy = "^1.4.0"
 black = "^23.3.0"
 ruff = "^0.0.275"
+types-aiofiles = "^23.1.0.4"
 
 [tool.ruff]
 line-length = 99
 src = ["app"]
 select = ["ALL"]
 ignore = [
+    "D104",
+    "D100",
+    "D101",
+    "A003",
+    "D103",
+    "D102",
+    "RUF012"
 ]
 fix = true
 
@@ -50,6 +58,7 @@ exclude = [
     "dist",
     "node_modules",
     "venv",
+    "app/queries"
 ]
 per-file-ignores = {}
 

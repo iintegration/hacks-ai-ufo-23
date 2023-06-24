@@ -1,0 +1,1 @@
+delete Token filter .value = <str>$token

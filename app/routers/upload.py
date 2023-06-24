@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 from typing import Annotated
 
 import aiofiles
@@ -25,7 +25,7 @@ async def create_upload_file(
     file_location = f"files/{database_file.id}.xls"
     object_name = str(database_file.id)
 
-    os.makedirs("files", exist_ok=True)
+    Path("files").mkdir(parents=True)
 
     async with aiofiles.open(file_location, "wb+") as temp:
         await temp.write(await uploaded_file.read())
@@ -36,6 +36,6 @@ async def create_upload_file(
         file_path=file_location,
     )
 
-    os.remove(file_location)
+    Path(file_location).unlink()
     background.analyze_data.send(object_name)
     return FileCreated(id=database_file.id)
