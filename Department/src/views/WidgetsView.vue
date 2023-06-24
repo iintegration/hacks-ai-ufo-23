@@ -7,7 +7,11 @@
                 Загрузить данные
             </label>
             <input style="color: black;" type="file" id="upload" name="file" v-on:change="handleFileUpload()" />
-            <UserIco />
+            <div style="display: flex; margin: 2px;">
+                <button @click="logout">Выйти</button>
+                <UserIco />
+            </div>
+            
 
         </header>
         <div class="widgets">
@@ -25,6 +29,10 @@ import FindBar from '../components/FindBar.vue';
 import axios from 'axios';
 export default {
     methods: {
+        logout() {
+            this.$store.dispatch("logout")
+            this.$router.replace('/login')
+        },
         handleFileUpload() {
             this.file = this.$refs.file.files[0];
             let formData = new FormData();
@@ -91,6 +99,7 @@ export default {
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: whitesmoke;
     border-bottom: 1px solid gray ;
     padding-top: 2px;
@@ -109,6 +118,7 @@ export default {
 }
 .label{
     color: black;
+    margin-left: 10px;
 
 }
 #upload {

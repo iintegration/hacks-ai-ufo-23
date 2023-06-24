@@ -2,7 +2,6 @@
 <template>
     <div class="body">
         <div class="lendos">
-            <img :src=object.photo_url alt="" width="300" height="200">
             <a>Тип: {{ object.subtype }}</a>
             <a>Объект: {{ object.type }}</a>
             <a>Площадь: {{ object.square }}</a>
@@ -180,7 +179,7 @@ export default {
     padding: 20px;
     font-size: 15px;
     color: black;
-    align-items: center;
+    align-items: flex-start;
 
 }
 
