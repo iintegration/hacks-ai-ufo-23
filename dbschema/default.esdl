@@ -57,5 +57,6 @@ module default {
 
   type File extending meta::Created, meta::Modified {
     required owner: User;
+    origin_filename: str;
   }
 }

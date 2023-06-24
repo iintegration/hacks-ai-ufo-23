@@ -21,7 +21,11 @@ async def create_upload_file(
     uploaded_file: UploadFile,
     user: Annotated[GetUserByTokenResult, Depends(verify_token)],
 ) -> FileCreated:
-    database_file = await add_file(edgedb_client, user_id=user.id)
+    database_file = await add_file(
+        edgedb_client,
+        user_id=user.id,
+        origin_filename=uploaded_file.filename,
+    )
     file_location = f"files/{database_file.id}.xls"
     object_name = str(database_file.id)
 
