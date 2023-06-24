@@ -70,7 +70,7 @@ export default {
         console.log(id)
         console.log('mount')
         const token = localStorage.getItem('token')
-        axios({ url: `https://promises-jill-reseller-bp.trycloudflare.com/subjects/${id}/`, method: "GET", headers: { 'x-token': token } })
+        axios({ url: `https://hackathon.sosus.org/subjects/${id}/`, method: "GET", headers: { 'x-token': token } })
             .then(resp => {
                 if (resp.data != null) {
                     this.object = resp.data
@@ -82,7 +82,7 @@ export default {
             .catch(err => {
                 console.log(err);
             })
-        axios({ url: `https://promises-jill-reseller-bp.trycloudflare.com/subjects/${id}/tasks/`, method: "GET", headers: { 'x-token': token } })
+        axios({ url: `https://hackathon.sosus.org/subjects/${id}/tasks/`, method: "GET", headers: { 'x-token': token } })
             .then(resp => {
                 if (resp.data != null) {
                     this.tasks = resp.data
@@ -103,7 +103,7 @@ export default {
             console.log(id)
             console.log('mount')
             const token = localStorage.getItem('token')
-            axios({ url: `https://promises-jill-reseller-bp.trycloudflare.com/subjects/${id}/`, method: "GET", headers: { 'x-token': token } })
+            axios({ url: `https://hackathon.sosus.org/subjects/${id}/`, method: "GET", headers: { 'x-token': token } })
                 .then(resp => {
                     if (resp.data != null) {
                         this.object = resp.data
@@ -124,7 +124,7 @@ export default {
             formData.append('uploaded_file', this.file);
             const token = localStorage.getItem('token')
             console.log(obj_key)
-            axios.post(`https://promises-jill-reseller-bp.trycloudflare.com/upload/${obj_key}/`,
+            axios.post(`https://hackathon.sosus.org/upload/${obj_key}/`,
                 formData,
                 {
                     headers: {

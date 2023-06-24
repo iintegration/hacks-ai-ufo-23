@@ -30,7 +30,7 @@ export default {
             let formData = new FormData();
             formData.append('uploaded_file', this.file);
             const token = localStorage.getItem('token')
-            axios.post('https://promises-jill-reseller-bp.trycloudflare.com/upload/',
+            axios.post('https://hackathon.sosus.org/upload/',
                 formData,
                 {
                     headers: {
@@ -50,7 +50,7 @@ export default {
     mounted() {
         console.log('mount')
         const token = localStorage.getItem('token')
-        axios({ url: "https://promises-jill-reseller-bp.trycloudflare.com/subjects/", method: "GET", headers: { 'x-token': token } })
+        axios({ url: "https://hackathon.sosus.org/subjects/", method: "GET", headers: { 'x-token': token } })
             .then(resp => {
                 if (resp.data[0] != null) {
                     this.items = resp.data
