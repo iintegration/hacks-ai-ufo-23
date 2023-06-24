@@ -1,0 +1,1 @@
+select Subject{*} filter .id = <uuid>$subject_id limit 1

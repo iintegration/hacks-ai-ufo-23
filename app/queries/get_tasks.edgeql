@@ -1,0 +1,1 @@
+select Task{*} filter .subject.id = <uuid>$subject_id

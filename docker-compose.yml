@@ -1,0 +1,38 @@
+version: "3"
+services:
+  redis:
+    restart: always
+    image: redis:alpine
+
+  edgedb:
+    restart: always
+    image: edgedb/edgedb:3.0
+    volumes:
+      - bot-edgedb-data:/var/lib/edgedb/data:/var/lib/edgedb/data
+    environment:
+      EDGEDB_SERVER_SECURITY: insecure_dev_mode
+
+  minio:
+    image: minio/minio:latest
+    command: server --console-address ":9001" /data/
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: user
+      MINIO_ROOT_PASSWORD: password
+    volumes:
+      - minio-storage:/data
+
+  app:
+    depends_on:
+      - redis
+      - edgedb
+    restart: always
+    build: .
+    env_file:
+      - .env
+
+volumes:
+  bot-edgedb-data:
+  minio-storage:

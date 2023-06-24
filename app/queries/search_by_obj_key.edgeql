@@ -1,0 +1,1 @@
+select Subject{*} filter .obj_key like <str>$obj_key ++ '%'

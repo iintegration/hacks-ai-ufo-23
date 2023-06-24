@@ -1,0 +1,1 @@
+select User filter .login = <str>$login and .password_hash = <str>$password_hash limit 1

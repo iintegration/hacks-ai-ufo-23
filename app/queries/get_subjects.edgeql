@@ -1,0 +1,1 @@
+select Subject{*} offset <optional int64>$offset limit <optional int64>$limit
