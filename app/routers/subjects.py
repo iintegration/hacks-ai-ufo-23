@@ -1,8 +1,8 @@
 from uuid import UUID
+
 from fastapi import APIRouter, HTTPException
 
 from app.database import edgedb_client
-
 from app.queries.get_subject_async_edgeql import GetSubjectResult, get_subject
 from app.queries.get_subjects_async_edgeql import GetSubjectsResult, get_subjects
 

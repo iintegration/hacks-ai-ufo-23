@@ -6,7 +6,7 @@ from edgedb import ConstraintViolationError
 from fastapi import APIRouter, HTTPException
 
 from app.database import edgedb_client
-from app.models.auth import Token, Auth
+from app.models.auth import Auth, Token
 from app.queries.add_token_async_edgeql import add_token
 from app.queries.add_user_async_edgeql import add_user
 from app.queries.get_user_by_auth_data_async_edgeql import get_user_by_auth_data

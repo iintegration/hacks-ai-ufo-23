@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 
 from app.database import edgedb_client
 from app.dependencies import verify_token
-from app.queries.get_tasks_async_edgeql import get_tasks, GetTasksResult
+from app.queries.get_tasks_async_edgeql import GetTasksResult, get_tasks
 
 router = APIRouter(dependencies=[Depends(verify_token)])
 

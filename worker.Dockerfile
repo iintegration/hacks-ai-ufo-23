@@ -1,4 +1,3 @@
-FROM edgedb/edgedb-cli as edgedb-cli
 FROM python:3.11-slim-buster as play
 
 WORKDIR /usr/src/app
@@ -23,10 +22,6 @@ COPY pyproject.toml poetry.lock /usr/src/app/
 RUN poetry install -n --without=dev \
     && apt-get purge -y --auto-remove gcc python3-dev build-essential git
 
-COPY --from=edgedb-cli /usr/bin/edgedb /usr/bin/
-COPY dbschema /usr/src/app/dbschema/
-COPY edgedb.toml /usr/src/app/
-
 COPY ./app /usr/src/app/app
 
-CMD [ "uvicorn", "app.main:app", "--host", "172.18.0.5", "--port", "80" ]
+CMD [ "dramatiq", "app.background"]

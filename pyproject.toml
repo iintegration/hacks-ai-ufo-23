@@ -14,6 +14,8 @@ dramatiq = "^1.14.2"
 bcrypt = "^4.0.1"
 aiofiles = "^23.1.0"
 miniopy-async = "^1.15"
+python-multipart = "^0.0.6"
+redis = "^4.5.5"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.4.0"

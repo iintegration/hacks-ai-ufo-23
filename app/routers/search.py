@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from app.database import edgedb_client
-from app.queries.search_by_obj_key_async_edgeql import search_by_obj_key, SearchByObjKeyResult
+from app.queries.search_by_obj_key_async_edgeql import SearchByObjKeyResult, search_by_obj_key
 
 router = APIRouter()
 

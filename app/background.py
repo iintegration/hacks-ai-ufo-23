@@ -1,11 +1,14 @@
 import dramatiq
+from dramatiq.brokers.redis import RedisBroker
 from edgedb import create_client
 
 from app.settings import SETTINGS
 
-edgedb_client = create_client(dsn=SETTINGS.edgedb_dsn)
+
+redis_broker = RedisBroker(url=SETTINGS.redis_dsn)
+dramatiq.set_broker(redis_broker)
 
 
 @dramatiq.actor
-def analyse_data(url: str):
-    pass
+def analyze_data(object_name: str):
+    print(object_name)

@@ -20,13 +20,13 @@ class NoPydanticValidation:
 
 @dataclasses.dataclass
 class GetTasksResult(NoPydanticValidation):
-    id: uuid.UUID
-    created: datetime.datetime | None
-    modified: datetime.datetime | None
     name: str
     predicted_end_date: datetime.datetime | None
     actual_end_date: datetime.datetime | None
     code: str
+    id: uuid.UUID
+    created: datetime.datetime | None
+    modified: datetime.datetime | None
 
 
 async def get_tasks(
