@@ -4,5 +4,5 @@ insert File {
     filter .id = <uuid>$user_id
   ),
   origin_filename := <str>$origin_filename,
-  obj_key := <str>$obj_key
+  obj_key := <optional str>$obj_key
 }

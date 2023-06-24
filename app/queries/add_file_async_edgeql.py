@@ -28,7 +28,7 @@ async def add_file(
     *,
     user_id: uuid.UUID,
     origin_filename: str,
-    obj_key: str,
+    obj_key: str | None,
 ) -> AddFileResult:
     return await executor.query_single(
         """\
@@ -38,7 +38,7 @@ async def add_file(
             filter .id = <uuid>$user_id
           ),
           origin_filename := <str>$origin_filename,
-          obj_key := <str>$obj_key
+          obj_key := <optional str>$obj_key
         }\
         """,
         user_id=user_id,

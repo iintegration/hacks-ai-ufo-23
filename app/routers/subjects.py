@@ -14,7 +14,7 @@ async def read_subjects() -> list[GetSubjectsResult]:
     return await get_subjects(edgedb_client, offset=0, limit=10)
 
 
-@router.get("/subject/{subject_id}")
+@router.get("/subjects/{subject_id}/")
 async def read_subject(subject_id: UUID) -> GetSubjectResult:
     subject = await get_subject(edgedb_client, subject_id=subject_id)
 

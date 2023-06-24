@@ -14,6 +14,7 @@ services:
       - bot-edgedb-data:/var/lib/edgedb/data:/var/lib/edgedb/data
     environment:
       EDGEDB_SERVER_SECURITY: insecure_dev_mode
+      EDGEDB_SERVER_ADMIN_UI: enabled
 
   minio:
     image: minio/minio:latest

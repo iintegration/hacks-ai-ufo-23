@@ -29,8 +29,8 @@ module default {
     required subject: Subject;
     required name: str;
     required code: str;
-    predicted_end_date: datetime;
-    actual_end_date: datetime;
+    predicted_end_date: cal::local_date;
+    actual_end_date: cal::local_date;
     multi link reasons := .<task[is Reason];
   }
 
@@ -58,6 +58,6 @@ module default {
   type File extending meta::Created, meta::Modified {
     required owner: User;
     required origin_filename: str;
-    required obj_key: str;
+    obj_key: str;
   }
 }

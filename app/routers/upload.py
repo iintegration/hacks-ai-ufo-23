@@ -1,5 +1,7 @@
+import os
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Optional
+from uuid import UUID
 
 import aiofiles
 from fastapi import APIRouter, Depends, UploadFile, Form
@@ -16,22 +18,16 @@ from app.settings import SETTINGS
 router = APIRouter()
 
 
-@router.post("/upload/")
-async def create_upload_file(
-    uploaded_file: UploadFile,
-    user: Annotated[GetUserByTokenResult, Depends(verify_token)],
-    obj_key: Annotated[str, Form()],
-) -> FileCreated:
+async def create_file(
+    user: GetUserByTokenResult, uploaded_file: UploadFile, obj_key: Optional[str] = None
+) -> UUID:
     database_file = await add_file(
-        edgedb_client,
-        user_id=user.id,
-        origin_filename=uploaded_file.filename,
-        obj_key=obj_key
+        edgedb_client, user_id=user.id, origin_filename=uploaded_file.filename, obj_key=obj_key
     )
     file_location = f"files/{database_file.id}.xls"
     object_name = str(database_file.id)
 
-    Path("files").mkdir(parents=True)
+    os.makedirs("files", exist_ok=True)
 
     async with aiofiles.open(file_location, "wb+") as temp:
         await temp.write(await uploaded_file.read())
@@ -43,5 +39,24 @@ async def create_upload_file(
     )
 
     Path(file_location).unlink()
-    background.analyze_data.send(object_name)
-    return FileCreated(id=database_file.id)
+    return database_file.id
+
+
+@router.post("/upload/{obj_key}/")
+async def add_file_with_obj_key(
+    uploaded_file: UploadFile,
+    user: Annotated[GetUserByTokenResult, Depends(verify_token)],
+    obj_key: str,
+) -> FileCreated:
+    object_id = await create_file(user=user, uploaded_file=uploaded_file, obj_key=obj_key)
+    background.analyze_data.send(str(object_id))
+    return FileCreated(id=object_id)
+
+
+@router.post("/upload/")
+async def add_upload_file(
+    uploaded_file: UploadFile, user: Annotated[GetUserByTokenResult, Depends(verify_token)]
+) -> FileCreated:
+    object_id = await create_file(user=user, uploaded_file=uploaded_file)
+    background.analyze_data.send(str(object_id))
+    return FileCreated(id=object_id)
