@@ -15,7 +15,6 @@ module meta {
 module default {
   type Subject extending meta::Created, meta::Modified {
     required obj_key: str;
-    required photo_url: str;
     state: str;
     square: str;
     general_designer_key: str;
@@ -32,6 +31,13 @@ module default {
     required code: str;
     predicted_end_date: datetime;
     actual_end_date: datetime;
+    multi link reasons := .<task[is Reason];
+  }
+
+  type Reason extending meta::Created, meta::Modified {
+    required name: str;
+    required about: str;
+    required task: Task;
   }
 
   type User extending meta::Created, meta::Modified {

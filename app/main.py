@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from app.dependencies import verify_token
 from app.routers import auth, search, subjects, tasks, upload
 
+
 app = FastAPI()
 
 origins = ["*"]

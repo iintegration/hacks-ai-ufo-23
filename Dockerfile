@@ -29,4 +29,4 @@ COPY edgedb.toml /usr/src/app/
 
 COPY ./app /usr/src/app/app
 
-CMD [ "uvicorn", "app.main:app", "--host", "172.18.0.5", "--port", "80" ]
+CMD [ "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80" ]

@@ -10,8 +10,8 @@ router = APIRouter()
 
 
 @router.get("/subjects/")
-async def read_subjects(offset: int = 0, limit: int = 10) -> list[GetSubjectsResult]:
-    return await get_subjects(edgedb_client, offset=offset, limit=limit)
+async def read_subjects() -> list[GetSubjectsResult]:
+    return await get_subjects(edgedb_client, offset=0, limit=10)
 
 
 @router.get("/subject/{subject_id}")
