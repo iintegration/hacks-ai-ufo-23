@@ -48,7 +48,7 @@ def train_test_dataset (dir_dataset, name_xlsx):
     # Открываем датасет для предикта
     need_data = np.datetime64(name_xlsx.replace('.xlsx', '').replace('.', '-'))
 
-    data_test = pd.read_excel(os.path.join(dir_dataset, name_xlsx))
+    data_test = pd.read_excel(os.path.join(dir_dataset, name_xlsx), dtype = {'Кодзадачи': str})
     data_test = data_test.drop(columns=['obj_pwa_key', '№ п/п', 'obj_shortName'])
     data_test = data_test.rename(
         columns={
