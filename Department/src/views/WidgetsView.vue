@@ -38,7 +38,7 @@ export default {
             let formData = new FormData();
             formData.append('uploaded_file', this.file);
             const token = localStorage.getItem('token')
-            axios.post('https://hackathon.sosus.org/upload/',
+            axios.post('https://trackbacks-efficient-precision-youth.trycloudflare.com/upload/',
                 formData,
                 {
                     headers: {
@@ -58,7 +58,7 @@ export default {
     mounted() {
         console.log('mount')
         const token = localStorage.getItem('token')
-        axios({ url: "https://hackathon.sosus.org/subjects/", method: "GET", headers: { 'x-token': token } })
+        axios({ url: "https://trackbacks-efficient-precision-youth.trycloudflare.com/subjects/", method: "GET", headers: { 'x-token': token } })
             .then(resp => {
                 if (resp.data[0] != null) {
                     this.items = resp.data
@@ -75,19 +75,7 @@ export default {
     data() {
 
         return {
-            items: [{
-                "created": "2023-06-24T04:52:37.332Z",
-                "obj_key": "123-124",
-                "state": "string",
-                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                "modified": "2023-06-24T04:52:37.332Z",
-                "general_contractor": "string",
-                "general_designer_key": "string",
-                "number_of_workers": 0,
-                "square": "string",
-                "subtype": "string",
-                "type": "string"
-            }],
+            items: [],
             file: ''
 
         }
