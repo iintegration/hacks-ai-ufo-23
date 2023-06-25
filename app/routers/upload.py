@@ -4,7 +4,7 @@ from typing import Annotated, Optional
 from uuid import UUID
 
 import aiofiles
-from fastapi import APIRouter, Depends, UploadFile, Form
+from fastapi import APIRouter, Depends, UploadFile
 
 from app import background
 from app.database import edgedb_client

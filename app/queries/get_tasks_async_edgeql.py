@@ -24,8 +24,8 @@ class GetTasksResult(NoPydanticValidation):
     id: uuid.UUID
     name: str
     code: str
-    predicted_end_date: datetime.datetime | None
-    actual_end_date: datetime.datetime | None
+    predicted_end_date: datetime.date | None
+    actual_end_date: datetime.date | None
     reasons: list[GetTasksResultReasonsItem]
 
 

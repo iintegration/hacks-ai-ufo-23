@@ -32,6 +32,7 @@ class SearchByObjKeyResult(NoPydanticValidation):
     square: str | None
     subtype: str | None
     type: str | None
+    number: int | None
 
 
 async def search_by_obj_key(

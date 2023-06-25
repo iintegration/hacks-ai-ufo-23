@@ -32,6 +32,7 @@ class GetSubjectsResult(NoPydanticValidation):
     square: str | None
     subtype: str | None
     type: str | None
+    number: int | None
 
 
 async def get_subjects(
