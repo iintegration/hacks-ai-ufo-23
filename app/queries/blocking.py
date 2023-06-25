@@ -126,7 +126,7 @@ def add_subject(
     number: int,
     type: str,
     subtype: str,
-) -> AddSubjectResult | None:
+) -> AddSubjectResult:
     return executor.query_single(
         """\
         insert Subject {
@@ -134,7 +134,7 @@ def add_subject(
           number := <int64>$number,
           type := <str>$type,
           subtype := <str>$subtype
-        } unless conflict on .obj_key\
+        } unless conflict on .obj_key else (select Subject)\
         """,
         object_key=object_key,
         number=number,
