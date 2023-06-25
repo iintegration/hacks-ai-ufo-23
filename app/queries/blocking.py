@@ -77,7 +77,7 @@ class GetTasksResult(NoPydanticValidation):
     id: uuid.UUID
     name: str
     code: str
-    predicted_end_date: datetime.date | None
+    predicted_end_date: str | None
     actual_end_date: datetime.date | None
     reasons: list[GetTasksResultReasonsItem]
 
@@ -149,8 +149,7 @@ def add_task(
     obj_key: str,
     name: str,
     code: str,
-    predicted_end_date: datetime.date | None,
-    actual_end_date: datetime.date | None,
+    predicted_end_date: str,
 ) -> AddTaskResult:
     return executor.query_single(
         """\
@@ -161,12 +160,10 @@ def add_task(
           ),
           name := <str>$name,
           code := <str>$code,
-          predicted_end_date := <optional cal::local_date>$predicted_end_date,
-          actual_end_date := <optional cal::local_date>$actual_end_date
+          predicted_end_date := <str>$predicted_end_date,
         } unless conflict on ((.subject, .code)) else (
           update Task set {
-            predicted_end_date := <optional cal::local_date>$predicted_end_date,
-            actual_end_date := <optional cal::local_date>$actual_end_date
+            predicted_end_date := <str>$predicted_end_date,
           }
         )\
         """,
@@ -174,7 +171,6 @@ def add_task(
         name=name,
         code=code,
         predicted_end_date=predicted_end_date,
-        actual_end_date=actual_end_date,
     )
 
 
