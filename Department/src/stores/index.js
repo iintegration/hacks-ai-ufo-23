@@ -35,7 +35,7 @@ const store = createStore({
             console.log(user)
             return new Promise((resolve, reject) => {
               commit('auth_request')
-              axios({url: 'https://hackathon.sosus.org/auth/', data: {'login': user.username, 'password':user.password}, method: 'POST' })
+              axios({url: 'https://trackbacks-efficient-precision-youth.trycloudflare.com/auth/', data: {'login': user.username, 'password':user.password}, method: 'POST' })
               .then(resp => {
                 const token = resp.data.token
                 const user = resp.data.user
