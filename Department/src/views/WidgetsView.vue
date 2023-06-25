@@ -6,7 +6,7 @@
             <label for="upload" class="label">
                 Загрузить данные
             </label>
-            <input style="color: black;" type="file" id="upload" name="file" v-on:change="handleFileUpload()" />
+            <input style="color: black;" type="file" id="upload" name="file" ref="file" v-on:change="handleFileUpload()" />
             <div style="display: flex; margin: 2px;">
                 <button @click="logout">Выйти</button>
                 <UserIco />
