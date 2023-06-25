@@ -3,4 +3,4 @@ insert Subject {
   number := <int64>$number,
   type := <str>$type,
   subtype := <str>$subtype
-} unless conflict on .obj_key
+} unless conflict on .obj_key else (select Subject)
