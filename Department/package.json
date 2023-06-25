@@ -1,0 +1,34 @@
+{
+  "name": "department",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@adamdehaven/vue-custom-tooltip": "^1.4.4",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "axios": "^1.4.0",
+    "pinia": "^2.1.3",
+    "vue": "^3.3.4",
+    "vue-good-table": "^2.21.11",
+    "vue-latest-table": "^1.0.5",
+    "vue-router": "^4.2.2",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.82",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "sass": "^1.63.6",
+    "vite": "^4.3.9",
+    "vite-plugin-icons": "^0.6.5",
+    "vite-svg-loader": "^4.0.0"
+  }
+}
