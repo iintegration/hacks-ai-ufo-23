@@ -16,6 +16,12 @@ aiofiles = "^23.1.0"
 miniopy-async = "^1.15"
 python-multipart = "^0.0.6"
 redis = "^4.5.5"
+pandas = "^2.0.2"
+numpy = "^1.25.0"
+matplotlib = "^3.7.1"
+nltk = "^3.8.1"
+scikit-learn = "^1.2.2"
+catboost = "^1.2"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.4.0"
