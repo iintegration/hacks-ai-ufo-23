@@ -14,7 +14,10 @@ module meta {
 
 module default {
   type Subject extending meta::Created, meta::Modified {
-    required obj_key: str;
+    required obj_key: str {
+      constraint exclusive;
+    }
+    number: int64;
     state: str;
     square: str;
     general_designer_key: str;
@@ -32,6 +35,8 @@ module default {
     predicted_end_date: cal::local_date;
     actual_end_date: cal::local_date;
     multi link reasons := .<task[is Reason];
+
+    constraint exclusive on ((.subject, .code));
   }
 
   type Reason extending meta::Created, meta::Modified {
