@@ -13,7 +13,6 @@ class NoPydanticValidation:
     @classmethod
     def __get_validators__(cls):
         from pydantic.dataclasses import dataclass as pydantic_dataclass
-
         pydantic_dataclass(cls)
         cls.__pydantic_model__.__get_validators__ = lambda: []
         return []
@@ -32,6 +31,7 @@ class GetSubjectResult(NoPydanticValidation):
     square: str | None
     subtype: str | None
     type: str | None
+    number: int | None
 
 
 async def get_subject(

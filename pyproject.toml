@@ -24,6 +24,7 @@ ruff = "^0.0.275"
 types-aiofiles = "^23.1.0.4"
 requests = "^2.31.0"
 beautifulsoup4 = "^4.12.2"
+pandas = "^2.0.2"
 
 [tool.ruff]
 line-length = 99

@@ -13,7 +13,6 @@ class NoPydanticValidation:
     @classmethod
     def __get_validators__(cls):
         from pydantic.dataclasses import dataclass as pydantic_dataclass
-
         pydantic_dataclass(cls)
         cls.__pydantic_model__.__get_validators__ = lambda: []
         return []
@@ -24,8 +23,8 @@ class GetTasksResult(NoPydanticValidation):
     id: uuid.UUID
     name: str
     code: str
-    predicted_end_date: datetime.datetime | None
-    actual_end_date: datetime.datetime | None
+    predicted_end_date: datetime.date | None
+    actual_end_date: datetime.date | None
     reasons: list[GetTasksResultReasonsItem]
 
 
