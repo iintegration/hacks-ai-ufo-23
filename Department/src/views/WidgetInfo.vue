@@ -155,7 +155,9 @@ export default {
     display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
-    border: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 
 
 

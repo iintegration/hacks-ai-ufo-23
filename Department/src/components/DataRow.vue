@@ -32,7 +32,9 @@ export default {
 .rowBody {
     display: flex;
     justify-items: space-around;
-    border:1px solid black;
+    border-right:1px solid black;
+    border-top:1px solid black;
+    border-bottom:1px solid black;
 
 }
 
